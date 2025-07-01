@@ -15,6 +15,16 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @DeleteMapping("/student/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable int id){
+        /*if(studentService.getStudentById(id) == null)
+            return new ResponseEntity<>("Student not found",HttpStatus.BAD_REQUEST);
+        else*/
+            return new ResponseEntity<>(studentService.deleteStudent(id), HttpStatus.OK);
+
+
+    }
+
     @GetMapping("/student")
     public ResponseEntity<List<Student>> getStudents(){
         return  new ResponseEntity<>(studentService.getStudent(), HttpStatus.OK);
